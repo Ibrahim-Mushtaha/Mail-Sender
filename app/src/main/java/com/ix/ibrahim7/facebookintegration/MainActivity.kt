@@ -1,14 +1,19 @@
 package com.ix.ibrahim7.facebookintegration
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.ix.ibrahim7.facebookintegration.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
+import java.security.MessageDigest
 import java.util.*
 
 
@@ -48,10 +53,30 @@ class MainActivity : AppCompatActivity() {
                 // App code
             }
         })
+        printkeyHash()
+    }
 
 
-
-
+    /*
+    funcation to get the Key hash tags
+     */
+    private fun printkeyHash(){
+        try {
+            val info = packageManager.getPackageInfo("com.ix.ibrahim7.facebookintegration", PackageManager.GET_SIGNATURES)
+            for (Signature in info.signatures) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(Signature.toByteArray())
+                Log.v(
+                    "eee key ",
+                    android.util.Base64.encodeToString(md.digest(), android.util.Base64.DEFAULT)
+                )
+            }
+        }catch (e:Exception){
+            Log.v(
+                "eee Exception ",
+             e.message.toString()
+            )
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
