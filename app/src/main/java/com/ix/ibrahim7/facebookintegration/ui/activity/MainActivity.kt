@@ -1,20 +1,16 @@
-package com.ix.ibrahim7.facebookintegration
+package com.ix.ibrahim7.facebookintegration.ui.activity
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresApi
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.ix.ibrahim7.facebookintegration.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 import java.security.MessageDigest
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,14 +20,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FacebookSdk.sdkInitialize(this)
+    /*    FacebookSdk.sdkInitialize(this)
         FacebookSdk.setApplicationId(getString(R.string.facebook_app_id))
-        FacebookSdk.setApplicationName(getString(R.string.fb_login_protocol_scheme))
+        FacebookSdk.setApplicationName(getString(R.string.fb_login_protocol_scheme))*/
         mbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mbinding.root)
 
-
-        callbackManager = CallbackManager.Factory.create()
+        setSupportActionBar(toolbar)
+        toolbar.visibility= View.GONE
+      /*  callbackManager = CallbackManager.Factory.create()
         login_button.setReadPermissions("email");
 
         // Callback registration
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 Log.v("eee error",exception.message.toString())
                 // App code
             }
-        })
+        })*/
         printkeyHash()
     }
 
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
+      //  callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
 

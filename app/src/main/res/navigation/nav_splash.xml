@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_splash"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_nav_main"
+            app:destination="@id/nav_main"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"
+            app:popUpTo="@+id/nav_splash"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <include app:graph="@navigation/nav_main" />
+</navigation>
