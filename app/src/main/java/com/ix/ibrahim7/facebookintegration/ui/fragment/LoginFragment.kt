@@ -7,13 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.facebook.*
 import com.facebook.AccessToken
 import com.facebook.login.LoginResult
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentLoginBinding
 import com.ix.ibrahim7.facebookintegration.util.Constant.EMAIL
+import com.ix.ibrahim7.facebookintegration.util.Constant.LOGIN
 import com.ix.ibrahim7.facebookintegration.util.Constant.TAG
+import com.ix.ibrahim7.facebookintegration.util.Constant.USERID
+import com.ix.ibrahim7.facebookintegration.util.Constant.editor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,37 +46,42 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mbinding.apply {
 
 
-        mbinding.loginButton.setReadPermissions(EMAIL)
-
-         mbinding.loginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-
-        mbinding.loginButton.fragment = this
-
-        // Callback registration
-        mbinding.loginButton.registerCallback(callbackManager, object :
-            FacebookCallback<LoginResult?> {
-            override fun onSuccess(loginResult: LoginResult?) {
-                // App code
-                val accessToken = AccessToken.getCurrentAccessToken().userId
-                val url = "http://graph.facebook.com/"
-                RequestData()
-                Log.e("eee success", AccessToken.getCurrentAccessToken()!!.toString())
+            loginButton.apply {
+                setReadPermissions(EMAIL)
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                fragment = this@LoginFragment
             }
 
-            override fun onCancel() {
-                Log.e("eee", "cancel")
-                // App code
-            }
+            // Callback registration
+            loginButton.registerCallback(callbackManager, object :
+                FacebookCallback<LoginResult?> {
+                override fun onSuccess(loginResult: LoginResult?) {
+                    editor(requireContext()).apply {
+                        putString(USERID,AccessToken.getCurrentAccessToken()!!.userId)
+                        putBoolean(LOGIN, true)
+                            apply()
+                    }
+                    RequestData()
+                    findNavController().navigate(R.id.action_loginFragment_to_nav_main)
+                    Log.e("eee success", AccessToken.getCurrentAccessToken()!!.toString())
+                }
 
-            override fun onError(exception: FacebookException) {
-                Log.e("eee error", exception.message.toString())
-                // App code
-            }
+                override fun onCancel() {
+                    Log.e("eee", "cancel")
+                }
 
-        })
+                override fun onError(exception: FacebookException) {
+                    Log.e("eee error", exception.message.toString())
+                    editor(requireContext()).putBoolean(LOGIN,false).apply()
+                }
 
+            })
+
+
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 

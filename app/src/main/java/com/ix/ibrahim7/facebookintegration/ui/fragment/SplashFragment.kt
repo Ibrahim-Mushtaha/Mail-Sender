@@ -14,6 +14,9 @@ import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentSplashBinding
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.SplashState
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.SplashViewModel
+import com.ix.ibrahim7.facebookintegration.util.Constant
+import com.ix.ibrahim7.facebookintegration.util.Constant.LOGIN
+import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 
 
 class SplashFragment : Fragment() {
@@ -40,7 +43,10 @@ class SplashFragment : Fragment() {
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is SplashState.MainActivity -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                    if (getSharePref(requireContext()).getBoolean(LOGIN,false))
+                        findNavController().navigate(R.id.action_splashFragment_to_nav_main)
+                    else
+                        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 }
             }
         })
@@ -49,10 +55,10 @@ class SplashFragment : Fragment() {
         val a: Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
         a.reset()
 
-
-        mbinding.imgSplashLogo.clearAnimation()
-        mbinding.imgSplashLogo.startAnimation(a)
-
+        mbinding.apply {
+            imgSplashLogo.clearAnimation()
+            imgSplashLogo.startAnimation(a)
+        }
 
         super.onViewCreated(view, savedInstanceState)
     }
