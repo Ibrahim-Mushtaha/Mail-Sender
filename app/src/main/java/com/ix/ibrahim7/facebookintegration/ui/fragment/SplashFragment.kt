@@ -40,7 +40,7 @@ class SplashFragment : Fragment() {
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is SplashState.MainActivity -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_nav_main)
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 }
             }
         })

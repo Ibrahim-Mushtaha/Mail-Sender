@@ -10,7 +10,16 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/white</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!--<style name="FacebookLoginButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/facebook_signin_btn</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>-->
+
 </resources>

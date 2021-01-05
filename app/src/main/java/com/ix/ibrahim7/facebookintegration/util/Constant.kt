@@ -17,6 +17,9 @@ import com.ix.ibrahim7.facebookintegration.R
 
 object Constant {
 
+    const val EMAIL="email"
+    const val TAG="eee"
+
     fun getSharePref(context: Context) =
         context.getSharedPreferences("Share", Activity.MODE_PRIVATE)
 
@@ -47,9 +50,9 @@ object Constant {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         if (types == 1) {
-            window.statusBarColor = ContextCompat.getColor(activity, R.color.purple_700)
+            window.statusBarColor = ContextCompat.getColor(activity, R.color.background_color)
         } else {
-            window.statusBarColor = ContextCompat.getColor(activity, R.color.white)
+            window.statusBarColor = ContextCompat.getColor(activity, R.color.background_color)
         }
     }
 
