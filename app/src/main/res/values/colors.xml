@@ -7,6 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_color">#121212</color>
-    <color name="hint_text">#969696</color>
+
+
+    <color name="background_color">#101012</color>
+    <color name="hint_text">#606771</color>
+    <color name="secondery_background_color">#16171B</color>
+    <color name="green">#00DCA7</color>
+    <color name="secondery_hint">#5B5C60</color>
+    <color name="box_color">#313540</color>
 </resources>
