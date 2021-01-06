@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.ix.ibrahim7.facebookintegration"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         multiDexEnabled true
@@ -94,10 +94,16 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
-
+    //Bottom Navigation
     implementation 'com.github.hamzaahmedkhan:KBottomNavigation:1.0.0'
 
 
+    //room
+    implementation "androidx.room:room-runtime:2.2.6"
+    kapt "androidx.room:room-compiler:2.2.6"
+
+
+    implementation "dev.sasikanth:colorsheet:1.0.1"
 
     /*//dexter
     implementation 'com.github.jrvansuita:PickImage:2.2.4'

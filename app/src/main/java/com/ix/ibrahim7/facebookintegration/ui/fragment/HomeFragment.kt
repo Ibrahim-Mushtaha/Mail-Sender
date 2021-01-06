@@ -13,6 +13,7 @@ import com.github.tntkhang.gmailsenderlibrary.GmailListener
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentHomeBinding
 import com.ix.ibrahim7.facebookintegration.ui.dialog.AddEmailDialog
+import com.ix.ibrahim7.facebookintegration.ui.dialog.ChooseColorDialog
 import com.ix.ibrahim7.facebookintegration.util.Constant.USERID
 import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 import com.ix.ibrahim7.facebookintegration.util.Constant.setImage
@@ -43,10 +44,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         getImage(getSharePref(requireContext()).getString(USERID,"")!!)
 
-        shareDialog = ShareDialog(requireActivity())
+             shareDialog = ShareDialog(requireActivity())
 
         mbinding.btnClick.setOnClickListener {
-            AddEmailDialog().show(childFragmentManager,"")
+            ChooseColorDialog().show(childFragmentManager,"")
+        }
             /*GMailSender.withAccount("ibrahim.mushtaha2@gmail.com", "Ibrahim6070$")
                 .withTitle("Android app")
                 .withBody("test message")
@@ -63,13 +65,11 @@ class HomeFragment : Fragment() {
                 })
                 .send()*/
 
-
             /*val content =
                 ShareLinkContent.Builder()
                     .setContentUrl(Uri.parse("shareContentUrl"))
                     .build()
             shareDialog.show(content)*/
-        }
 
         super.onViewCreated(view, savedInstanceState)
     }

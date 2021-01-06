@@ -38,13 +38,40 @@
           app:layout_constraintTop_toTopOf="@+id/textView2" />
 
 
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/txtWelcome"
+          android:layout_marginTop="16dp"
+          android:fontFamily="@font/cairo_regular"
+          android:text="No Email Send Until know"
+          android:textColor="@color/hint_text"
+          android:textSize="14sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+      <ImageView
+          android:id="@+id/imageView"
+          android:layout_width="42dp"
+          android:layout_height="42dp"
+          android:layout_marginTop="56dp"
+          android:src="@drawable/ic_files"
+          android:tint="@color/secondery_hint"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.498"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
       <Button
           android:id="@+id/btn_click"
           android:layout_width="0dp"
           android:layout_height="56dp"
           android:layout_margin="24sp"
-          android:text="send"
           android:layout_marginBottom="16dp"
+          android:text="send"
+          android:visibility="visible"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.498"

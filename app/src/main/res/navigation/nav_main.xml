@@ -2,12 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main"
-    app:startDestination="@id/homeFragment">
-
+    android:id="@+id/nav_main.xml"
+    app:startDestination="@id/homeFragment2">
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/homeFragment2"
         android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/listEmailFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ListEmailFragment"
+        android:label="fragment_list_email"
+        tools:layout="@layout/fragment_list_email" />
 </navigation>

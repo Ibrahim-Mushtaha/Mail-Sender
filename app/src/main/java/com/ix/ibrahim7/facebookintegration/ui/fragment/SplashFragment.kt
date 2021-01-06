@@ -44,7 +44,7 @@ class SplashFragment : Fragment() {
             when (it) {
                 is SplashState.MainActivity -> {
                     if (getSharePref(requireContext()).getBoolean(LOGIN,false))
-                        findNavController().navigate(R.id.action_splashFragment_to_nav_main)
+                        findNavController().navigate(R.id.action_splashFragment_to_mainFragment2)
                     else
                         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 }

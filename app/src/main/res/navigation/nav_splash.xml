@@ -11,10 +11,17 @@
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"
+            app:popUpTo="@+id/nav_splash"
+            app:popUpToInclusive="true"/>
         <action
-            android:id="@+id/action_splashFragment_to_nav_main"
-            app:destination="@id/nav_main"
+            android:id="@+id/action_splashFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
             app:enterAnim="@anim/slide_up"
             app:exitAnim="@anim/slide_down"
             app:launchSingleTop="true"
@@ -23,21 +30,24 @@
             app:popUpTo="@+id/nav_splash"
             app:popUpToInclusive="true"/>
     </fragment>
-    <include app:graph="@navigation/nav_main" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_nav_main"
-            app:destination="@id/nav_main"
+            android:id="@+id/action_loginFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
             app:enterAnim="@anim/slide_up"
             app:exitAnim="@anim/slide_down"
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_up"
             app:popExitAnim="@anim/slide_down"
             app:popUpTo="@+id/nav_splash"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/mainFragment2"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.MainFragment"
+        android:label="MainFragment" />
 </navigation>

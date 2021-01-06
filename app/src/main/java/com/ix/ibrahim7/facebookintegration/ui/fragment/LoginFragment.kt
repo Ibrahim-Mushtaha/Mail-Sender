@@ -65,7 +65,7 @@ class LoginFragment : Fragment() {
                             apply()
                     }
                     RequestData()
-                    findNavController().navigate(R.id.action_loginFragment_to_nav_main)
+                    findNavController().navigate(R.id.action_loginFragment_to_mainFragment2)
                     Log.e("eee success", AccessToken.getCurrentAccessToken()!!.toString())
                 }
 
