@@ -12,15 +12,14 @@ import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.adapter.EmailAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentHomeBinding
 import com.ix.ibrahim7.facebookintegration.model.Email
-import com.ix.ibrahim7.facebookintegration.ui.dialog.AddEmailDialog
-import com.ix.ibrahim7.facebookintegration.ui.dialog.ChooseColorDialog
+import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
 import com.ix.ibrahim7.facebookintegration.util.Constant.USERID
 import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 import com.ix.ibrahim7.facebookintegration.util.Constant.setImage
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class HomeFragment : Fragment(),EmailAdapter.onClick,AddEmailDialog.GoFragmentMessage {
+class HomeFragment : Fragment(),EmailAdapter.onClick,AddEmailDialog.OnClickListener {
 
 
     lateinit var mbinding: FragmentHomeBinding

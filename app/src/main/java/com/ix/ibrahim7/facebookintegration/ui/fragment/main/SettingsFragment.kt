@@ -9,11 +9,11 @@ import androidx.core.view.get
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentSettingsBinding
 import com.ix.ibrahim7.facebookintegration.model.Email
-import com.ix.ibrahim7.facebookintegration.ui.dialog.AddEmailDialog
+import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class SettingsFragment : Fragment(),AddEmailDialog.GoFragmentMessage {
+class SettingsFragment : Fragment(),AddEmailDialog.OnClickListener {
 
     lateinit var mBinding:FragmentSettingsBinding
 

@@ -1,20 +1,16 @@
-package com.ix.ibrahim7.facebookintegration.ui.dialog
+package com.ix.ibrahim7.facebookintegration.ui.fragment.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.ix.ibrahim7.facebookintegration.R
-import com.ix.ibrahim7.facebookintegration.adapter.EmailAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.DialogAddEmailBinding
 import com.ix.ibrahim7.facebookintegration.model.Email
 import java.util.*
-import kotlin.collections.ArrayList
 
-class AddEmailDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment(){
+class AddEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(){
 
     lateinit var mBinding:DialogAddEmailBinding
 
@@ -52,7 +48,7 @@ class AddEmailDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment(){
 
 
 
-    interface GoFragmentMessage {
+    interface OnClickListener {
         fun onClick(email: Email,type: Boolean)
     }
 

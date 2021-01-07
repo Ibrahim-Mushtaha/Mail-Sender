@@ -51,6 +51,11 @@ class CategoryAdapter(var data: ArrayList<Category>, val itemclick: onClick) :
             setOnClickListener {
                 itemclick.onClickItem(currentItem,holder.adapterPosition, 1)
             }
+
+            setOnLongClickListener {
+                itemclick.onClickItem(currentItem,holder.adapterPosition, 2)
+                true
+            }
         }
 
 

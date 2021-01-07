@@ -1,22 +1,28 @@
-package com.ix.ibrahim7.facebookintegration.ui.dialog
+package com.ix.ibrahim7.facebookintegration.ui.fragment.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.DialogChooseColorBinding
+import com.ix.ibrahim7.facebookintegration.databinding.DialogChooseOptionBinding
 import com.ix.ibrahim7.facebookintegration.model.Category
+import com.ix.ibrahim7.facebookintegration.model.Email
+import com.ix.ibrahim7.facebookintegration.ui.viewmodel.CategoryViewmodel
 import dev.sasikanth.colorsheet.ColorSheet
-import kotlinx.android.synthetic.main.dialog_choose_color.*
-import kotlinx.android.synthetic.main.dialog_choose_color.view.*
+import java.util.*
 
-class ChooseColorDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment(){
+class CategoryOptionDialog(val onGo: OnClickListener, val category: Category) : BottomSheetDialogFragment(),ChooseColorDialog.OnClickListener{
 
-    lateinit var mBinding:DialogChooseColorBinding
+    lateinit var mBinding:DialogChooseOptionBinding
+
+    private val viewModel by lazy {
+        ViewModelProvider(this)[CategoryViewmodel::class.java]
+    }
 
     var color = ""
 
@@ -25,7 +31,7 @@ class ChooseColorDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = DialogChooseColorBinding.inflate(inflater,container,false).apply {
+        mBinding = DialogChooseOptionBinding.inflate(inflater,container,false).apply {
             executePendingBindings()
         }
         dialog!!.requestWindowFeature(STYLE_NO_TITLE)
@@ -36,26 +42,15 @@ class ChooseColorDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val colors = resources.getIntArray(R.array.colors)
-
-        mBinding.tvChooseColor.setOnClickListener {
-            ColorSheet().cornerRadius(4)
-            ColorSheet().colorPicker(
-                colors = colors,
-                listener = { color ->
-                    it.background.setTint(color)
-                    // Handle color
-                    this.color = color.toString()
-                })
-                .show(childFragmentManager)
+        mBinding.tvEdit.setOnClickListener {
+            dismiss()
+            onGo.onClick(category,true)
         }
 
-        mBinding.btnSave.setOnClickListener {
-            onGo.onClick(Category("1",mBinding.txtName.text.toString(),color))
+        mBinding.tvDelete.setOnClickListener {
+            viewModel.deleteCategory(category)
             dismiss()
         }
-
-
 
     }
 
@@ -68,12 +63,14 @@ class ChooseColorDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment
 
     }
 
+    override fun onClick(category: Category, type: Int) {
 
-
-    interface GoFragmentMessage {
-        fun onClick(category: Category)
     }
 
+
+    interface OnClickListener {
+        fun onClick(category: Category,type: Boolean)
+    }
 
 
 }

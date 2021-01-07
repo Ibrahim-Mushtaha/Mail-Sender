@@ -16,6 +16,7 @@
         android:layout_marginBottom="4dp"
         android:backgroundTint="@color/secondery_background_color"
         android:elevation="2dp"
+        style="@style/focusInClick"
         android:layout_margin="4dp"
         app:cardCornerRadius="4dp">
 
