@@ -8,22 +8,29 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ix.ibrahim7.facebookintegration.R
+import com.ix.ibrahim7.facebookintegration.databinding.DialogChooseColorBinding
+import com.ix.ibrahim7.facebookintegration.model.Category
 import dev.sasikanth.colorsheet.ColorSheet
 import kotlinx.android.synthetic.main.dialog_choose_color.*
 import kotlinx.android.synthetic.main.dialog_choose_color.view.*
 
-class ChooseColorDialog() : BottomSheetDialogFragment(){
+class ChooseColorDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment(){
 
+    lateinit var mBinding:DialogChooseColorBinding
 
+    var color = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mBinding = DialogChooseColorBinding.inflate(inflater,container,false).apply {
+            executePendingBindings()
+        }
         dialog!!.requestWindowFeature(STYLE_NO_TITLE)
         dialog!!.setCancelable(false)
-        return inflater.inflate(R.layout.dialog_choose_color, container, false)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,17 +38,24 @@ class ChooseColorDialog() : BottomSheetDialogFragment(){
 
         val colors = resources.getIntArray(R.array.colors)
 
-        view.tvChooseColor.setOnClickListener {
+        mBinding.tvChooseColor.setOnClickListener {
             ColorSheet().cornerRadius(4)
             ColorSheet().colorPicker(
                 colors = colors,
                 listener = { color ->
-                    it.setBackgroundColor(color)
+                    it.background.setTint(color)
                     // Handle color
-
+                    this.color = color.toString()
                 })
                 .show(childFragmentManager)
         }
+
+        mBinding.btnSave.setOnClickListener {
+            onGo.onClick(Category("1",mBinding.txtName.text.toString(),color))
+            dismiss()
+        }
+
+
 
     }
 
@@ -57,7 +71,7 @@ class ChooseColorDialog() : BottomSheetDialogFragment(){
 
 
     interface GoFragmentMessage {
-        fun onClick(type: Boolean)
+        fun onClick(category: Category)
     }
 
 

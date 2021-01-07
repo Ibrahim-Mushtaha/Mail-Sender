@@ -8,24 +8,36 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ix.ibrahim7.facebookintegration.R
+import com.ix.ibrahim7.facebookintegration.adapter.EmailAdapter
+import com.ix.ibrahim7.facebookintegration.databinding.DialogAddEmailBinding
+import com.ix.ibrahim7.facebookintegration.model.Email
+import java.util.*
+import kotlin.collections.ArrayList
 
-class AddEmailDialog() : BottomSheetDialogFragment(){
+class AddEmailDialog(val onGo: GoFragmentMessage) : BottomSheetDialogFragment(){
 
-
+    lateinit var mBinding:DialogAddEmailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mBinding = DialogAddEmailBinding.inflate(inflater,container,false).apply {
+            executePendingBindings()
+        }
         dialog!!.requestWindowFeature(STYLE_NO_TITLE)
         dialog!!.setCancelable(false)
-        return inflater.inflate(R.layout.dialog_add_email, container, false)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mBinding.btnSave.setOnClickListener {
+            onGo.onClick(Email("1",mBinding.txtEmail.text.toString(),mBinding.txtName.text.toString(),Calendar.getInstance().time.toString()),true)
+            dismiss()
+        }
 
     }
 
@@ -41,8 +53,9 @@ class AddEmailDialog() : BottomSheetDialogFragment(){
 
 
     interface GoFragmentMessage {
-        fun onClick(type: Boolean)
+        fun onClick(email: Email,type: Boolean)
     }
+
 
 
 

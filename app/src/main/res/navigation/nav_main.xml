@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main.xml"
-    app:startDestination="@id/homeFragment2">
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/homeFragment2"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.HomeFragment"
+        android:id="@+id/homeFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/listEmailFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ListEmailFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.ListEmailFragment"
         android:label="fragment_list_email"
         tools:layout="@layout/fragment_list_email" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

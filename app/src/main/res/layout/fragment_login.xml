@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color"
-        tools:context=".ui.fragment.LoginFragment">
+        tools:context=".ui.fragment.auth.LoginFragment">
 
         <ImageView
             android:id="@+id/imgSplashLogo"

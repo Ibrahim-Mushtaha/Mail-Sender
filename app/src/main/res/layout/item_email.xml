@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="Email"
+            type="com.ix.ibrahim7.facebookintegration.model.Email" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/secondery_background_color"
+        android:elevation="2dp"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="4dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvReceivedEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_regular"
+                tools:text="Email Received"
+                android:text="@{Email.received}"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_marginTop="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.054"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0.6dp"
+                android:layout_marginTop="2sp"
+                android:background="@color/secondery_hint"
+                app:layout_constraintEnd_toEndOf="@+id/tvEmailDate"
+                app:layout_constraintStart_toStartOf="@+id/tvEmailDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmailDate" />
+
+            <TextView
+                android:id="@+id/tvEmailNote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/cairo_regular"
+                tools:text="Email Note"
+                android:text="@{Email.note}"
+                android:textColor="@color/hint_text"
+                android:textSize="16sp"
+                android:layout_marginEnd="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/tvReceivedEmail"
+                app:layout_constraintTop_toBottomOf="@+id/tvReceivedEmail" />
+
+
+            <TextView
+                android:id="@+id/tvEmailDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/cairo_regular"
+                tools:text="Select color"
+                android:text="@{Email.date}"
+                android:textColor="@color/secondery_hint"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmailNote" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

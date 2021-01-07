@@ -1,4 +1,4 @@
-package com.ix.ibrahim7.facebookintegration.ui.fragment
+package com.ix.ibrahim7.facebookintegration.ui.fragment.splash
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,6 @@ import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentSplashBinding
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.SplashState
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.SplashViewModel
-import com.ix.ibrahim7.facebookintegration.util.Constant
 import com.ix.ibrahim7.facebookintegration.util.Constant.LOGIN
 import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 

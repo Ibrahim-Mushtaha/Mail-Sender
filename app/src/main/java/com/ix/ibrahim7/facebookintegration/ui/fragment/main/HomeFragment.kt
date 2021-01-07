@@ -1,30 +1,34 @@
-package com.ix.ibrahim7.facebookintegration.ui.fragment
+package com.ix.ibrahim7.facebookintegration.ui.fragment.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.facebook.FacebookSdk
 import com.facebook.share.widget.ShareDialog
-import com.github.tntkhang.gmailsenderlibrary.GMailSender
-import com.github.tntkhang.gmailsenderlibrary.GmailListener
 import com.ix.ibrahim7.facebookintegration.R
+import com.ix.ibrahim7.facebookintegration.adapter.EmailAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentHomeBinding
+import com.ix.ibrahim7.facebookintegration.model.Email
 import com.ix.ibrahim7.facebookintegration.ui.dialog.AddEmailDialog
 import com.ix.ibrahim7.facebookintegration.ui.dialog.ChooseColorDialog
 import com.ix.ibrahim7.facebookintegration.util.Constant.USERID
 import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 import com.ix.ibrahim7.facebookintegration.util.Constant.setImage
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),EmailAdapter.onClick,AddEmailDialog.GoFragmentMessage {
 
 
     lateinit var mbinding: FragmentHomeBinding
     lateinit var shareDialog: ShareDialog
 
+    private val email_adapter by lazy {
+        EmailAdapter(ArrayList(),this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +48,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         getImage(getSharePref(requireContext()).getString(USERID,"")!!)
 
-             shareDialog = ShareDialog(requireActivity())
+
+        mbinding.listEmail.apply {
+            adapter=email_adapter
+        }
+
+        shareDialog = ShareDialog(requireActivity())
+
+        requireActivity().bottom_nav.menu[3].apply {
+            setIcon(R.drawable.ic_add)
+            setOnMenuItemClickListener {
+                AddEmailDialog(this@HomeFragment).show(childFragmentManager,"")
+                true
+            }
+        }
 
         mbinding.btnClick.setOnClickListener {
-            ChooseColorDialog().show(childFragmentManager,"")
+            //ChooseColorDialog().show(childFragmentManager,"")
         }
             /*GMailSender.withAccount("ibrahim.mushtaha2@gmail.com", "Ibrahim6070$")
                 .withTitle("Android app")
@@ -78,5 +95,15 @@ class HomeFragment : Fragment() {
         val image_url =
             "http://graph.facebook.com/$id/picture?type=large"
         setImage(requireContext(),image_url,mbinding.tvProfileImage,R.drawable.ic_profile_img)
+    }
+
+    override fun onClickItem(email: Email, position: Int, type: Int) {
+
+    }
+
+    override fun onClick(email: Email,type: Boolean) {
+        email_adapter.data.add(email)
+        email_adapter.notifyDataSetChanged()
+        if (email_adapter.data.isNotEmpty()) mbinding.emptyContanier.visibility=View.INVISIBLE
     }
 }

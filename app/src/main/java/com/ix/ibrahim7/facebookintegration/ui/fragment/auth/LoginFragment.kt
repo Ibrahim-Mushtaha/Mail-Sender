@@ -1,4 +1,4 @@
-package com.ix.ibrahim7.facebookintegration.ui.fragment
+package com.ix.ibrahim7.facebookintegration.ui.fragment.auth
 
 import android.content.Intent
 import android.os.Bundle

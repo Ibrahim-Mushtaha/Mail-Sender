@@ -3,24 +3,24 @@
 
 
     <item
-        android:id="@+id/listEmailFragment2"
-        android:icon="@drawable/ic_settings"
-        android:title="List" />
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/selector_settings"
+        android:title="Setting"/>
 
     <item
-        android:id="@+id/category"
-        android:icon="@drawable/ic_category"
+        android:id="@+id/listEmailFragment"
+        android:icon="@drawable/selector_category"
         android:title="List" />
 
 
     <item
-        android:id="@+id/homeFragment2"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/selector_home"
         android:title="Home" />
 
     <item
         android:id="@+id/add"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/selector_add"
         android:title="Add" />
 
 </menu>

@@ -27,11 +27,10 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="62dp"
             android:elevation="150dp"
             app:elevation="150dp"
             android:background="@color/secondery_background_color"
-            app:itemIconTint="#50535A"
             app:menu="@menu/bottom_nav_menu"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"

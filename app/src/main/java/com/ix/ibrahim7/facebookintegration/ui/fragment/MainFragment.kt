@@ -41,6 +41,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mBinding.bottomNav.itemIconTintList = null
+
         val navegation =
             childFragmentManager.findFragmentById(R.id.fragment_nav_host_main)
                 ?.findNavController()?.also {
@@ -49,11 +50,6 @@ class MainFragment : Fragment() {
                         it
                     )
                 }
-
-        mBinding.bottomNav.menu[3].setOnMenuItemClickListener {
-            AddEmailDialog().show(childFragmentManager,"")
-            true
-        }
 
 
     }
