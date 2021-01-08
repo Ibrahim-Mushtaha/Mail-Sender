@@ -3,6 +3,7 @@ package com.ix.ibrahim7.facebookintegration.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.ix.ibrahim7.facebookintegration.model.Category
+import com.ix.ibrahim7.facebookintegration.model.Users
 
 @Dao
 interface EmailDao{
@@ -21,6 +22,16 @@ interface EmailDao{
 
     @Delete
     fun delete(category: Category)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertUser(users: Users)
+
+    @Query("SELECT * FROM users_table where categoryID = :id")
+    fun getAllUser(id:String): LiveData<List<Users>>
+
+    @Query("SELECT * FROM users_table")
+    fun getAllUser(): LiveData<List<Users>>
+
 
  /*   @Query("SELECT * FROM task_table where title > :name")
     fun getTask(name:String): LiveData<List<Task>>?

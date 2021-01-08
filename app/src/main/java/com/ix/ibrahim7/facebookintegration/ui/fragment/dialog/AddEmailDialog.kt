@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ix.ibrahim7.facebookintegration.databinding.DialogAddEmailBinding
+import com.ix.ibrahim7.facebookintegration.model.Category
 import com.ix.ibrahim7.facebookintegration.model.Email
+import com.ix.ibrahim7.facebookintegration.model.Users
 import java.util.*
 
-class AddEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(){
+class AddEmailDialog(val categoryID: String,val onGo: OnClickListener) : BottomSheetDialogFragment(){
 
     lateinit var mBinding:DialogAddEmailBinding
 
@@ -31,7 +33,8 @@ class AddEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(){
         super.onViewCreated(view, savedInstanceState)
 
         mBinding.btnSave.setOnClickListener {
-            onGo.onClick(Email("1",mBinding.txtEmail.text.toString(),mBinding.txtName.text.toString(),Calendar.getInstance().time.toString()),true)
+            //onGo.onClick(Email("1",mBinding.txtEmail.text.toString(),mBinding.txtName.text.toString(),Calendar.getInstance().time.toString()),true)
+            onGo.onClick(Users(UUID.randomUUID().toString(),mBinding.txtName.text.toString(),mBinding.txtEmail.text.toString(),categoryID),true)
             dismiss()
         }
 
@@ -49,7 +52,7 @@ class AddEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(){
 
 
     interface OnClickListener {
-        fun onClick(email: Email,type: Boolean)
+        fun onClick(users: Users,type: Boolean)
     }
 
 

@@ -8,7 +8,7 @@
         android:title="Setting"/>
 
     <item
-        android:id="@+id/listEmailFragment"
+        android:id="@+id/listCategoryFragment"
         android:icon="@drawable/selector_category"
         android:title="List" />
 

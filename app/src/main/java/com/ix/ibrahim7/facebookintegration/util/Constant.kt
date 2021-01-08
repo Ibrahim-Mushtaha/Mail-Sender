@@ -21,6 +21,7 @@ object Constant {
     const val TAG="eee"
     const val LOGIN="login"
     const val USERID="userid"
+    const val CATEGORYID="categoryid"
 
     fun getSharePref(context: Context) =
         context.getSharedPreferences("Share", Activity.MODE_PRIVATE)

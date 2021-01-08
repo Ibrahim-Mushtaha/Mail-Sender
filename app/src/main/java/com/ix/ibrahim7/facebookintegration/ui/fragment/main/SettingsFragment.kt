@@ -13,7 +13,7 @@ import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class SettingsFragment : Fragment(),AddEmailDialog.OnClickListener {
+class SettingsFragment : Fragment() {
 
     lateinit var mBinding:FragmentSettingsBinding
 
@@ -33,7 +33,7 @@ class SettingsFragment : Fragment(),AddEmailDialog.OnClickListener {
         requireActivity().bottom_nav.menu[3].apply {
             setIcon(R.drawable.ic_add)
             setOnMenuItemClickListener {
-                AddEmailDialog(this@SettingsFragment).show(childFragmentManager,"")
+             //   AddEmailDialog(this@SettingsFragment).show(childFragmentManager,"")
                 true
             }
         }
@@ -43,9 +43,6 @@ class SettingsFragment : Fragment(),AddEmailDialog.OnClickListener {
     }
 
 
-    override fun onClick(email: Email, type: Boolean) {
-
-    }
 
 
 }

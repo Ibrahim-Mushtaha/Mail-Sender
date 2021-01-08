@@ -21,7 +21,7 @@ import com.ix.ibrahim7.facebookintegration.util.Constant.setImage
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class HomeFragment : Fragment(), EmailAdapter.onClick, AddEmailDialog.OnClickListener {
+class HomeFragment : Fragment(), EmailAdapter.onClick{
 
 
     lateinit var mbinding: FragmentHomeBinding
@@ -55,7 +55,7 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, AddEmailDialog.OnClickLis
         requireActivity().bottom_nav.menu[3].apply {
             setIcon(R.drawable.ic_add)
             setOnMenuItemClickListener {
-                AddEmailDialog(this@HomeFragment).show(childFragmentManager, "")
+              //  AddEmailDialog(this@HomeFragment).show(childFragmentManager, "")
                 true
             }
         }
@@ -125,9 +125,9 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, AddEmailDialog.OnClickLis
 
 
 
-    override fun onClick(email: Email, type: Boolean) {
+    /*override fun onClick(email: Email, type: Boolean) {
         email_adapter.data.add(email)
         email_adapter.notifyDataSetChanged()
         if (email_adapter.data.isNotEmpty()) mbinding.emptyContanier.visibility = View.INVISIBLE
-    }
+    }*/
 }

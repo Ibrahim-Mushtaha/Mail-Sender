@@ -6,8 +6,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ix.ibrahim7.facebookintegration.model.Category
+import com.ix.ibrahim7.facebookintegration.model.Users
 
-@Database(entities = [Category::class], version = 2,exportSchema = false)
+@Database(entities = [Category::class,Users::class], version = 3,exportSchema = false)
 abstract class EmailDatabase : RoomDatabase() {
 
     abstract val taskDao : EmailDao

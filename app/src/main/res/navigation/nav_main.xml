@@ -9,13 +9,25 @@
         android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.HomeFragment"
         android:label="HomeFragment" />
     <fragment
-        android:id="@+id/listEmailFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.ListEmailFragment"
-        android:label="fragment_list_email"
-        tools:layout="@layout/fragment_list_email" />
+        android:id="@+id/listCategoryFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.ListCategoryFragment"
+        android:label="fragment_list_email">
+        <action
+            android:id="@+id/action_listEmailFragment_to_listUsersFragment"
+            app:destination="@id/listUsersFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/listUsersFragment"
+        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.ListUsersFragment"
+        android:label="fragment_list_users"
+        tools:layout="@layout/fragment_list_users" />
 </navigation>
