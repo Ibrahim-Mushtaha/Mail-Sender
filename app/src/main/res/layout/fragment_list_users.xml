@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/cairo_semibold"
-            android:text="Emails in"
+            android:text="Users Email"
             android:textColor="@android:color/white"
             android:textSize="22sp"
             android:layout_marginStart="16sp"

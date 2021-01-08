@@ -6,22 +6,28 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.share.widget.ShareDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.material.snackbar.Snackbar
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.adapter.EmailAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentHomeBinding
 import com.ix.ibrahim7.facebookintegration.model.Email
+import com.ix.ibrahim7.facebookintegration.model.Users
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
+import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.SendEmailDialog
+import com.ix.ibrahim7.facebookintegration.util.Constant
+import com.ix.ibrahim7.facebookintegration.util.Constant.dialog
 import com.ix.ibrahim7.facebookintegration.util.Constant.setImage
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class HomeFragment : Fragment(), EmailAdapter.onClick{
+class HomeFragment : Fragment(), EmailAdapter.onClick,SendEmailDialog.OnClickListener{
 
 
     lateinit var mbinding: FragmentHomeBinding
@@ -50,37 +56,15 @@ class HomeFragment : Fragment(), EmailAdapter.onClick{
             adapter = email_adapter
         }
 
-        shareDialog = ShareDialog(requireActivity())
-
         requireActivity().bottom_nav.menu[3].apply {
             setIcon(R.drawable.ic_add)
             setOnMenuItemClickListener {
-              //  AddEmailDialog(this@HomeFragment).show(childFragmentManager, "")
+                SendEmailDialog(this@HomeFragment).show(childFragmentManager, "")
                 true
             }
         }
 
-        /*GMailSender.withAccount("ibrahim.mushtaha2@gmail.com", "Ibrahim6070$")
-            .withTitle("Android app")
-            .withBody("test message")
-            .withSender("ibrahim.mushtaha2@gmail.com")
-            .toEmailAddress("ibrahim.mushtaha1999@gmail.com") // one or multiple addresses separated by a comma
-            .withListenner(object : GmailListener {
-                override fun sendSuccess() {
-                    Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-                }
 
-                override fun sendFail(err: String) {
-                    Toast.makeText(requireContext(), "Fail: $err", Toast.LENGTH_SHORT).show()
-                }
-            })
-            .send()*/
-
-        /*val content =
-            ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("shareContentUrl"))
-                .build()
-        shareDialog.show(content)*/
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -122,7 +106,19 @@ class HomeFragment : Fragment(), EmailAdapter.onClick{
 
     }
 
-
+    override fun onClick(type: Int) {
+        when(type){
+            0->Constant.showDialog(requireActivity())
+                1-> {
+                    Snackbar.make(mbinding.root,"Sanded Successfully",Snackbar.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+            2-> {
+                Snackbar.make(mbinding.root,"Failed please try again later",Snackbar.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+        }
+    }
 
 
     /*override fun onClick(email: Email, type: Boolean) {

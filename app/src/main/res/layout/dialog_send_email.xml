@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/cairo_regular"
-            android:text="Add Email"
+            android:text="Send Email"
             android:textColor="@color/white"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16sp"
+            android:layout_marginTop="12sp"
             android:layout_marginStart="24sp"
             android:layout_marginEnd="24sp"
             android:textColorHint="@color/box_input_text_color"
@@ -57,10 +57,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtName"
+                android:id="@+id/txtEmailfrom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Username"
+                android:hint="From"
                 android:textColorHint="@color/box_color"
                 android:textCursorDrawable="@drawable/shape_curser"
                 android:imeOptions="actionNext"
@@ -75,7 +75,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16sp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="24sp"
             android:layout_marginEnd="24sp"
             android:textColorHint="@color/box_input_text_color"
@@ -87,10 +87,10 @@
             app:layout_constraintTop_toBottomOf="@+id/txtLayoutName">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtEmail"
+                android:id="@+id/txtEmailTo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="E-mail"
+                android:hint="To"
                 android:textColorHint="@color/box_color"
                 android:textCursorDrawable="@drawable/shape_curser"
                 android:imeOptions="actionDone"
@@ -99,12 +99,57 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutNote"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="24sp"
+            android:textColorHint="@color/box_input_text_color"
+            app:boxStrokeColor="@color/box_input_text_color"
+            app:hintTextColor="@color/box_input_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtLayoutEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEmailNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Note"
+                android:gravity="start"
+                android:textColorHint="@color/box_color"
+                android:textCursorDrawable="@drawable/shape_curser"
+                android:imeOptions="actionDone"
+                android:maxLines="5"
+                android:lines="5"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_Category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/txtLayoutNote"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/item_category_liner" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_Save"
+            style="@style/focusInClick"
             android:layout_width="match_parent"
             android:layout_height="62dp"
             android:layout_marginStart="24sp"
-            android:layout_marginTop="24sp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="24sp"
             android:backgroundTint="@color/secondery_background_color"
             android:fontFamily="@font/cairo_semibold"
@@ -114,11 +159,10 @@
             android:textSize="18dp"
             android:textStyle="bold"
             app:cornerRadius="4dp"
-            style="@style/focusInClick"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLayoutEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/list_Category" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
