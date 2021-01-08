@@ -1,6 +1,8 @@
 package com.ix.ibrahim7.facebookintegration.ui.fragment.main
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,11 @@ import com.ix.ibrahim7.facebookintegration.model.Category
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.CategoryOptionDialog
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.ChooseColorDialog
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.CategoryViewmodel
+import com.ix.ibrahim7.facebookintegration.util.Constant
+import com.ix.ibrahim7.facebookintegration.util.Constant.CATEGORY
 import com.ix.ibrahim7.facebookintegration.util.Constant.CATEGORYID
+import com.ix.ibrahim7.facebookintegration.util.Constant.editor
+import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -46,6 +52,19 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+        if (!getSharePref(requireContext()).getBoolean(CATEGORY,false)) {
+            Constant.enableTips(
+                requireActivity(),
+                "Here you can different category and each category you can add a list of emails in it",
+                mBinding.view,
+                Gravity.TOP,
+                3500,
+                Color.parseColor("#bdc3c7")
+            )
+            editor(requireContext()).putBoolean(CATEGORY,true).apply()
+        }
 
         mBinding.listCategory.apply {
             adapter = category_adapter

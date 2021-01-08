@@ -2,8 +2,12 @@ package com.ix.ibrahim7.facebookintegration.util
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.ClipDescription
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
+import android.view.Gravity
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
@@ -14,6 +18,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 /*import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy*/
 import com.ix.ibrahim7.facebookintegration.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import tourguide.tourguide.TourGuide
+import java.time.Duration
 
 object Constant {
 
@@ -22,6 +32,9 @@ object Constant {
     const val LOGIN="login"
     const val USERID="userid"
     const val CATEGORYID="categoryid"
+    const val HOME="home"
+    const val CATEGORY="category"
+    const val USERLIST="userlist"
 
     fun getSharePref(context: Context) =
         context.getSharedPreferences("Share", Activity.MODE_PRIVATE)
@@ -46,6 +59,22 @@ object Constant {
             .into(iv)
     }
 
+
+    fun enableTips(activity: Activity,description: String,view: View,gravity: Int,duration: Long,textcolor:Int){
+        GlobalScope.launch (Dispatchers.Main){
+            val mTourGuideHandler: TourGuide = TourGuide.create(activity) {
+                toolTip {
+                    description { description }
+                    textColor { textcolor }
+                    backgroundColor {ContextCompat.getColor(activity,R.color.secondery_background_color) }
+                    shadow { true }
+                    gravity { gravity }
+                }
+            }.playOn(view)
+            delay(duration)
+            mTourGuideHandler.cleanUp()
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun setUpStatusBar(activity: Activity, types: Int) {

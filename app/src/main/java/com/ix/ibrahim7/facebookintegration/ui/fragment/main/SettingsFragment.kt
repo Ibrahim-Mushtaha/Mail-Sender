@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.get
+import com.google.android.material.snackbar.Snackbar
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentSettingsBinding
 import com.ix.ibrahim7.facebookintegration.model.Email
 import com.ix.ibrahim7.facebookintegration.model.Users
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.SendEmailDialog
+import com.ix.ibrahim7.facebookintegration.util.Constant
+import com.ix.ibrahim7.facebookintegration.util.Constant.CATEGORY
+import com.ix.ibrahim7.facebookintegration.util.Constant.HOME
+import com.ix.ibrahim7.facebookintegration.util.Constant.USERLIST
+import com.ix.ibrahim7.facebookintegration.util.Constant.editor
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -40,6 +46,18 @@ class SettingsFragment : Fragment() ,SendEmailDialog.OnClickListener{
             }
         }
 
+
+        mBinding.apply {
+            btnTips.setOnClickListener {
+                editor(requireContext()).apply {
+                    putBoolean(HOME,false)
+                    putBoolean(USERLIST,false)
+                    putBoolean(CATEGORY,false)
+                    apply()
+                }
+                Snackbar.make(mBinding.root,"You have activated the tips",Snackbar.LENGTH_SHORT).show()
+            }
+        }
 
         super.onViewCreated(view, savedInstanceState)
     }

@@ -33,6 +33,8 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
 
     lateinit var mBinding:DialogSendEmailBinding
 
+    lateinit var shareDialog: ShareDialog
+
     private val category_adapter by lazy {
         CategoryDialogAdapter(ArrayList(),this)
     }

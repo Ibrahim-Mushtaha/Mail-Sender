@@ -1,7 +1,9 @@
 package com.ix.ibrahim7.facebookintegration.ui.fragment.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,11 @@ import com.ix.ibrahim7.facebookintegration.model.Users
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.CategoryViewmodel
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.UsersViewmodel
+import com.ix.ibrahim7.facebookintegration.util.Constant
 import com.ix.ibrahim7.facebookintegration.util.Constant.CATEGORYID
+import com.ix.ibrahim7.facebookintegration.util.Constant.USERLIST
+import com.ix.ibrahim7.facebookintegration.util.Constant.editor
+import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -61,6 +67,18 @@ class ListUsersFragment : Fragment(), UserAdapter.onClick, AddEmailDialog.OnClic
             }
             user_adapter.notifyDataSetChanged()
         })
+
+        if (!getSharePref(requireContext()).getBoolean(USERLIST,false)) {
+            Constant.enableTips(
+                requireActivity(),
+                "Here You can add a list of e-mails for this category",
+                mBinding.view,
+                Gravity.TOP,
+                3500,
+                Color.parseColor("#bdc3c7")
+            )
+            editor(requireContext()).putBoolean(USERLIST,true).apply()
+        }
 
         mBinding.apply {
 
