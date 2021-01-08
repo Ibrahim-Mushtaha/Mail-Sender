@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FacebookSdk.sdkInitialize(this)
+        FacebookSdk.setApplicationId(getString(R.string.facebook_app_id))
+        FacebookSdk.setApplicationName(getString(R.string.fb_login_protocol_scheme))
         mbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mbinding.root)
 
