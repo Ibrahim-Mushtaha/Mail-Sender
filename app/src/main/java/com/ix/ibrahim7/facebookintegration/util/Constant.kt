@@ -35,6 +35,7 @@ object Constant {
     const val HOME="home"
     const val CATEGORY="category"
     const val USERLIST="userlist"
+    const val DAYFORMAT="dd/MM/yyyy hh:mm a"
 
     fun getSharePref(context: Context) =
         context.getSharedPreferences("Share", Activity.MODE_PRIVATE)

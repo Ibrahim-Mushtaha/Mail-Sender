@@ -1,16 +1,12 @@
 package com.ix.ibrahim7.facebookintegration.ui.fragment.dialog
 
-import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.facebook.share.widget.ShareDialog
 import com.github.tntkhang.gmailsenderlibrary.GMailSender
 import com.github.tntkhang.gmailsenderlibrary.GmailListener
@@ -19,13 +15,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.adapter.CategoryDialogAdapter
-import com.ix.ibrahim7.facebookintegration.databinding.DialogAddEmailBinding
 import com.ix.ibrahim7.facebookintegration.databinding.DialogSendEmailBinding
 import com.ix.ibrahim7.facebookintegration.model.Category
-import com.ix.ibrahim7.facebookintegration.model.Email
-import com.ix.ibrahim7.facebookintegration.model.Users
+import com.ix.ibrahim7.facebookintegration.model.Message
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.CategoryViewmodel
-import com.ix.ibrahim7.facebookintegration.util.Constant
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -87,7 +80,7 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
                     return@setOnClickListener
                 }
                 else -> {
-                    onGo.onClick(0)
+                    onGo.onClick(null,0)
                     GMailSender.withAccount(getData().email, "Ibrahim6070$")
             .withTitle("Android app")
             .withBody(mBinding.txtEmailNote.text.toString())
@@ -95,11 +88,11 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
             .toEmailAddress(mBinding.txtEmailTo.text.toString()) // one or multiple addresses separated by a comma
             .withListenner(object : GmailListener {
                 override fun sendSuccess() {
-                    onGo.onClick(1)
+                    onGo.onClick(Message(UUID.randomUUID().toString(),mBinding.txtEmailTo.text.toString(),mBinding.txtEmailNote.text.toString(),Calendar.getInstance().timeInMillis.toString()),1)
                 }
 
                 override fun sendFail(err: String) {
-                    onGo.onClick(2)
+                    onGo.onClick(null,2)
                 }
             })
             .send()
@@ -139,7 +132,7 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
     }
 
     interface OnClickListener {
-        fun onClick(type: Int)
+        fun onClick(message: Message?,type: Int)
     }
 
     override fun onClickItem(category: Category, position: Int, type: Int) {

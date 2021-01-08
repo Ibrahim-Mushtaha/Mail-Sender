@@ -13,10 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ix.ibrahim7.facebookintegration.adapter.UserAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentListUsersBinding
-import com.ix.ibrahim7.facebookintegration.model.Email
 import com.ix.ibrahim7.facebookintegration.model.Users
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
-import com.ix.ibrahim7.facebookintegration.ui.viewmodel.CategoryViewmodel
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.UsersViewmodel
 import com.ix.ibrahim7.facebookintegration.util.Constant
 import com.ix.ibrahim7.facebookintegration.util.Constant.CATEGORYID
@@ -24,7 +22,6 @@ import com.ix.ibrahim7.facebookintegration.util.Constant.USERLIST
 import com.ix.ibrahim7.facebookintegration.util.Constant.editor
 import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
 import kotlinx.android.synthetic.main.fragment_main.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 

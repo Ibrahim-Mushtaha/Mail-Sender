@@ -96,6 +96,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_rate"
                 style="@style/focusInClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,6 +149,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_Share"
                 style="@style/focusInClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -201,6 +203,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_Open_Instegram"
                 style="@style/focusInClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

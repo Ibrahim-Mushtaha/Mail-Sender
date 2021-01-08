@@ -1,6 +1,5 @@
 package com.ix.ibrahim7.facebookintegration.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.ItemEmailBinding
 import com.ix.ibrahim7.facebookintegration.databinding.ItemUserBinding
-import com.ix.ibrahim7.facebookintegration.model.Email
 import com.ix.ibrahim7.facebookintegration.model.Users
 import java.util.ArrayList
 

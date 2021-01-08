@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ix.ibrahim7.facebookintegration.databinding.DialogAddEmailBinding
-import com.ix.ibrahim7.facebookintegration.model.Category
-import com.ix.ibrahim7.facebookintegration.model.Email
 import com.ix.ibrahim7.facebookintegration.model.Users
 import java.util.*
 

@@ -1,6 +1,5 @@
 package com.ix.ibrahim7.facebookintegration.ui.fragment.main
 
-import android.R.attr.button
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -18,8 +19,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.adapter.EmailAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentHomeBinding
-import com.ix.ibrahim7.facebookintegration.model.Email
+import com.ix.ibrahim7.facebookintegration.model.Message
 import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.SendEmailDialog
+import com.ix.ibrahim7.facebookintegration.ui.viewmodel.HomeViewmodel
 import com.ix.ibrahim7.facebookintegration.util.Constant
 import com.ix.ibrahim7.facebookintegration.util.Constant.HOME
 import com.ix.ibrahim7.facebookintegration.util.Constant.dialog
@@ -37,6 +39,10 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
 
     private val email_adapter by lazy {
         EmailAdapter(ArrayList(), this)
+    }
+
+    private val viewModel by lazy {
+        ViewModelProvider(this)[HomeViewmodel::class.java]
     }
 
     override fun onCreateView(
@@ -57,6 +63,13 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
         mbinding.listEmail.apply {
             adapter = email_adapter
         }
+
+        viewModel.MessageLiveData!!.observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty())  mbinding.emptyContanier.visibility=View.INVISIBLE
+            email_adapter.data.clear()
+            email_adapter.data.addAll(it)
+            email_adapter.notifyDataSetChanged()
+        })
 
 
         if (!getSharePref(requireContext()).getBoolean(HOME,false)) {
@@ -122,14 +135,15 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
         setImage(requireContext(), image_url, mbinding.tvProfileImage, R.drawable.ic_profile_img)
     }
 
-    override fun onClickItem(email: Email, position: Int, type: Int) {
+    override fun onClickItem(message: Message, position: Int, type: Int) {
 
     }
 
-    override fun onClick(type: Int) {
+    override fun onClick(message: Message?,type: Int) {
         when (type) {
             0 -> Constant.showDialog(requireActivity())
             1 -> {
+                viewModel.insertMessage(message!!)
                 Snackbar.make(mbinding.root, "Sanded Successfully", Snackbar.LENGTH_SHORT).show()
                 dialog.dismiss()
             }

@@ -1,6 +1,5 @@
 package com.ix.ibrahim7.facebookintegration.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,7 +8,6 @@ import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.ItemCategoryBinding
 import com.ix.ibrahim7.facebookintegration.databinding.ItemEmailBinding
 import com.ix.ibrahim7.facebookintegration.model.Category
-import com.ix.ibrahim7.facebookintegration.model.Email
 import kotlinx.android.synthetic.main.item_category.view.*
 import java.util.ArrayList
 

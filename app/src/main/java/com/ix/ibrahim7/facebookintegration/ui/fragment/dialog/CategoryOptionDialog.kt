@@ -7,14 +7,10 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.DialogChooseColorBinding
 import com.ix.ibrahim7.facebookintegration.databinding.DialogChooseOptionBinding
 import com.ix.ibrahim7.facebookintegration.model.Category
-import com.ix.ibrahim7.facebookintegration.model.Email
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.CategoryViewmodel
-import dev.sasikanth.colorsheet.ColorSheet
-import java.util.*
 
 class CategoryOptionDialog(val onGo: OnClickListener, val category: Category) : BottomSheetDialogFragment(),ChooseColorDialog.OnClickListener{
 
