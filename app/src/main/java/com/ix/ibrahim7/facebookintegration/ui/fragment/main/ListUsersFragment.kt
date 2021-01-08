@@ -22,7 +22,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ListUsersFragment : Fragment() ,UserAdapter.onClick,AddEmailDialog.OnClickListener{
+class ListUsersFragment : Fragment(), UserAdapter.onClick, AddEmailDialog.OnClickListener {
 
 
     lateinit var mBinding: FragmentListUsersBinding
@@ -31,7 +31,7 @@ class ListUsersFragment : Fragment() ,UserAdapter.onClick,AddEmailDialog.OnClick
         requireArguments().getString(CATEGORYID)!!
     }
     private val user_adapter by lazy {
-        UserAdapter(ArrayList(),this)
+        UserAdapter(ArrayList(), this)
     }
 
     private val viewModel by lazy {
@@ -42,7 +42,7 @@ class ListUsersFragment : Fragment() ,UserAdapter.onClick,AddEmailDialog.OnClick
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireActivity().bottom_nav.visibility=View.GONE
+        requireActivity().bottom_nav.visibility = View.GONE
         mBinding = FragmentListUsersBinding.inflate(inflater, container, false).apply {
             executePendingBindings()
         }
@@ -52,19 +52,20 @@ class ListUsersFragment : Fragment() ,UserAdapter.onClick,AddEmailDialog.OnClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-      //  viewModel.insertUser(Users(UUID.randomUUID().toString(),"ibrahim","Ibrahim.mushtaha2@gmail.com",arg!!)).also {
-            viewModel.getAllUsers(arg)
-                viewModel.UsersLiveData!!.observe(viewLifecycleOwner, Observer {
-                Log.v("eee it",it.toString())
-                user_adapter.data.clear()
-                user_adapter.data.addAll(it)
-                user_adapter.notifyDataSetChanged()
-            })
-        //}
+        viewModel.getAllUser(arg)
+
+        viewModel.CategoryAndUsersLiveData!!.observe(viewLifecycleOwner, Observer {CategoryAndUsers->
+            user_adapter.data.clear()
+            CategoryAndUsers.forEach {
+                user_adapter.data.addAll(it.users)
+            }
+            user_adapter.notifyDataSetChanged()
+        })
+
         mBinding.apply {
 
             listUser.apply {
-                adapter=user_adapter
+                adapter = user_adapter
             }
 
             tvback.setOnClickListener {
@@ -72,15 +73,9 @@ class ListUsersFragment : Fragment() ,UserAdapter.onClick,AddEmailDialog.OnClick
             }
 
             tvAddEmail.setOnClickListener {
-                AddEmailDialog(arg,this@ListUsersFragment).show(childFragmentManager, "")
+                AddEmailDialog(arg, this@ListUsersFragment).show(childFragmentManager, "")
             }
 
-
-        /*viewModel.UsersLiveData!!.observe(viewLifecycleOwner, Observer {
-                user_adapter.data.clear()
-                user_adapter.data.addAll(it)
-                user_adapter.notifyDataSetChanged()
-        })*/
 
         }
         super.onViewCreated(view, savedInstanceState)
@@ -91,8 +86,8 @@ class ListUsersFragment : Fragment() ,UserAdapter.onClick,AddEmailDialog.OnClick
     }
 
     override fun onClick(users: Users, type: Boolean) {
-        Log.v("eee insert",users.id.toString())
-        Log.v("eee insert",users.categoryID.toString())
+        Log.v("eee insert", users.id.toString())
+        Log.v("eee insert", users.categoryID.toString())
         viewModel.insertUser(users)
         user_adapter.notifyDataSetChanged()
     }

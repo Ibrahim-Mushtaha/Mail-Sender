@@ -1,10 +1,9 @@
 package com.ix.ibrahim7.facebookintegration.ui.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.ix.ibrahim7.facebookintegration.database.EmailRepository
+import com.ix.ibrahim7.facebookintegration.repository.EmailRepository
 import com.ix.ibrahim7.facebookintegration.model.Category
 import kotlinx.coroutines.*
 
@@ -21,7 +20,10 @@ class CategoryViewmodel(application: Application) :
 
 
     init {
-        mRepository = EmailRepository(application)
+        mRepository =
+            EmailRepository(
+                application
+            )
         CategoryLiveData = mRepository?.getAllCategory()
     }
 

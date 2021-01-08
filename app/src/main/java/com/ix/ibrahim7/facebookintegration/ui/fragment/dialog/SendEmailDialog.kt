@@ -62,6 +62,8 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
             adapter = category_adapter
         }
 
+        mBinding.txtEmailfrom.setText(getData().email)
+
         mBinding.btnSave.setOnClickListener {
             when {
                 TextUtils.isEmpty(mBinding.txtEmailTo.text!!.toString()) -> {
@@ -83,7 +85,6 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
                     return@setOnClickListener
                 }
                 else -> {
-                    mBinding.txtEmailfrom.setText(getData().email)
                     onGo.onClick(0)
                     GMailSender.withAccount(getData().email, "Ibrahim6070$")
             .withTitle("Android app")

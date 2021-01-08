@@ -1,6 +1,8 @@
-package com.ix.ibrahim7.facebookintegration.database
+package com.ix.ibrahim7.facebookintegration.repository
 
 import android.app.Application
+import com.ix.ibrahim7.facebookintegration.database.EmailDao
+import com.ix.ibrahim7.facebookintegration.database.EmailDatabase
 import com.ix.ibrahim7.facebookintegration.model.Category
 import com.ix.ibrahim7.facebookintegration.model.Users
 import kotlinx.coroutines.Dispatchers
@@ -13,13 +15,16 @@ class EmailRepository(application: Application)  {
     var mDao: EmailDao
 
     init {
-        data = EmailDatabase.getInstance(application)
+        data =
+            EmailDatabase.getInstance(
+                application
+            )
         mDao =data!!.taskDao
     }
 
 
     fun getAllCategory() = mDao.getAllCategory()
-    fun getAllUser(id:String) = mDao.getAllUser(id)
+    fun getAllCategoryAndUsers(id: String) = mDao.getAllCategoryAndUsers(id)
 
 
      suspend fun insertCategory(category: Category) {
