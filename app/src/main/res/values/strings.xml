@@ -1,9 +1,15 @@
 <resources>
-    <string name="app_name">Facebook Integration</string>
+    <string name="app_name">Mail Sender</string>
     <string name="facebook_app_id">741290040126573</string>
     <string name="fb_login_protocol_scheme">fb741290040126573</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="this_is_require">required Field</string>
+    <string name="activate_tips">You have activated the tips</string>
+    <string name="current_emails">Here you will see the current emails you sent</string>
+    <string name="category_tips">Here you can different category and each category you can add a list of emails in it</string>
+    <string name="list_user">Here You can add a list of e-mails for this category</string>
+    <string name="sended_successfully">Sanded Successfully</string>
+    <string name="failed">Failed please try again later</string>
 </resources>

@@ -1,11 +1,13 @@
 package com.ix.ibrahim7.facebookintegration.ui.fragment.dialog
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.databinding.DialogAddEmailBinding
 import com.ix.ibrahim7.facebookintegration.model.Users
 import java.util.*
@@ -31,9 +33,31 @@ class AddEmailDialog(val categoryID: String,val onGo: OnClickListener) : BottomS
         super.onViewCreated(view, savedInstanceState)
 
         mBinding.btnSave.setOnClickListener {
-            //onGo.onClick(Email("1",mBinding.txtEmail.text.toString(),mBinding.txtName.text.toString(),Calendar.getInstance().time.toString()),true)
-            onGo.onClick(Users(UUID.randomUUID().toString(),mBinding.txtName.text.toString(),mBinding.txtEmail.text.toString(),categoryID),true)
-            dismiss()
+            when {
+                TextUtils.isEmpty(mBinding.txtName.text!!.toString()) -> {
+                    mBinding.txtName.error =
+                        requireActivity().getString(R.string.this_is_require)
+                    mBinding.txtName.requestFocus()
+                    return@setOnClickListener
+                }
+                TextUtils.isEmpty(mBinding.txtEmail.text!!.toString()) -> {
+                    mBinding.txtEmail.error =
+                        requireActivity().getString(R.string.this_is_require)
+                    mBinding.txtEmail.requestFocus()
+                    return@setOnClickListener
+                }
+                else -> {
+                    onGo.onClick(
+                        Users(
+                            UUID.randomUUID().toString(),
+                            mBinding.txtName.text.toString(),
+                            mBinding.txtEmail.text.toString(),
+                            categoryID
+                        ), true
+                    )
+                    dismiss()
+                }
+            }
         }
 
     }

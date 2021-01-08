@@ -86,8 +86,18 @@ class ChooseColorDialog(val onGo: OnClickListener, val category: Category?) :
                     tvChooseColor.background.setTint(category.color.toInt())
 
                     btnSave.setOnClickListener {
-                        onGo.onClick(Category(category.id, txtName.text.toString(), color), 2)
-                        dismiss()
+                        when {
+                        TextUtils.isEmpty(mBinding.txtName.text!!.toString()) -> {
+                            mBinding.txtName.error =
+                                requireActivity().getString(R.string.this_is_require)
+                            mBinding.txtName.requestFocus()
+                            return@setOnClickListener
+                        }
+                            else->{
+                                onGo.onClick(Category(category.id, txtName.text.toString(), color), 2)
+                                dismiss()
+                            }
+                        }
                     }
 
                     tvChooseColor.setOnClickListener {

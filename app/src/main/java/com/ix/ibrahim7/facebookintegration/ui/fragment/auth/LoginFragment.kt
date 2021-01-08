@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
 
     lateinit var mbinding: FragmentLoginBinding
     lateinit var callbackManager: CallbackManager
-    var text =""
+    private var text =""
     private val RC_SIGN_IN = 100
 
     lateinit var mGoogleSignInClient :GoogleSignInClient
@@ -78,15 +78,15 @@ class LoginFragment : Fragment() {
                             apply()
                     }
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment2)
-                    Log.e("eee success", AccessToken.getCurrentAccessToken()!!.toString())
+                    Log.e("$TAG success", AccessToken.getCurrentAccessToken()!!.toString())
                 }
 
                 override fun onCancel() {
-                    Log.e("eee", "cancel")
+                    Log.e(TAG, "cancel")
                 }
 
                 override fun onError(exception: FacebookException) {
-                    Log.e("eee error", exception.message.toString())
+                    Log.e("$TAG error", exception.message.toString())
                     editor(requireContext()).putBoolean(LOGIN,false).apply()
                 }
 
@@ -107,14 +107,12 @@ class LoginFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
 
-
         if (requestCode === RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             val task: Task<GoogleSignInAccount> =
                 GoogleSignIn.getSignedInAccountFromIntent(data!!)
             handleSignInResult(task)
         }
-
 
         super.onActivityResult(requestCode, resultCode, data)
     }

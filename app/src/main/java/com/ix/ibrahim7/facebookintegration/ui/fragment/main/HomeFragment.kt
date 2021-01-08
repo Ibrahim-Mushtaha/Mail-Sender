@@ -75,7 +75,7 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
         if (!getSharePref(requireContext()).getBoolean(HOME,false)) {
             enableTips(
                 requireActivity(),
-                "Click on Next button to proceed...",
+                requireActivity().getString(R.string.current_emails),
                 mbinding.tvProfileImage,
                 Gravity.LEFT,
                 3500,
@@ -144,11 +144,11 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
             0 -> Constant.showDialog(requireActivity())
             1 -> {
                 viewModel.insertMessage(message!!)
-                Snackbar.make(mbinding.root, "Sanded Successfully", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(mbinding.root, requireActivity().getString(R.string.sended_successfully), Snackbar.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
             2 -> {
-                Snackbar.make(mbinding.root, "Failed please try again later", Snackbar.LENGTH_SHORT)
+                Snackbar.make(mbinding.root, requireActivity().getString(R.string.failed), Snackbar.LENGTH_SHORT)
                     .show()
                 dialog.dismiss()
             }
@@ -156,9 +156,4 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
     }
 
 
-    /*override fun onClick(email: Email, type: Boolean) {
-        email_adapter.data.add(email)
-        email_adapter.notifyDataSetChanged()
-        if (email_adapter.data.isNotEmpty()) mbinding.emptyContanier.visibility = View.INVISIBLE
-    }*/
 }

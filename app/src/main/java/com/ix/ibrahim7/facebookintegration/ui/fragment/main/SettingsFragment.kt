@@ -59,8 +59,7 @@ class SettingsFragment : Fragment(), SendEmailDialog.OnClickListener {
                     putBoolean(CATEGORY, false)
                     apply()
                 }
-                Snackbar.make(mBinding.root, "You have activated the tips", Snackbar.LENGTH_SHORT)
-                    .show()
+                Snackbar.make(mBinding.root, requireActivity().getString(R.string.activate_tips), Snackbar.LENGTH_SHORT).show()
             }
 
 

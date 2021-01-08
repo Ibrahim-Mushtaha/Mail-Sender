@@ -57,7 +57,7 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
         if (!getSharePref(requireContext()).getBoolean(CATEGORY,false)) {
             Constant.enableTips(
                 requireActivity(),
-                "Here you can different category and each category you can add a list of emails in it",
+                requireActivity().getString(R.string.category_tips),
                 mBinding.view,
                 Gravity.TOP,
                 3500,

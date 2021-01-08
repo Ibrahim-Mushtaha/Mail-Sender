@@ -82,7 +82,7 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
                 else -> {
                     onGo.onClick(null,0)
                     GMailSender.withAccount(getData().email, "Ibrahim6070$")
-            .withTitle("Android app")
+            .withTitle(requireActivity().getString(R.string.app_name))
             .withBody(mBinding.txtEmailNote.text.toString())
             .withSender(getData().email)
             .toEmailAddress(mBinding.txtEmailTo.text.toString()) // one or multiple addresses separated by a comma

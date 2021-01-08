@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.ix.ibrahim7.facebookintegration.R
 import com.ix.ibrahim7.facebookintegration.adapter.UserAdapter
 import com.ix.ibrahim7.facebookintegration.databinding.FragmentListUsersBinding
 import com.ix.ibrahim7.facebookintegration.model.Users
@@ -18,6 +19,7 @@ import com.ix.ibrahim7.facebookintegration.ui.fragment.dialog.AddEmailDialog
 import com.ix.ibrahim7.facebookintegration.ui.viewmodel.UsersViewmodel
 import com.ix.ibrahim7.facebookintegration.util.Constant
 import com.ix.ibrahim7.facebookintegration.util.Constant.CATEGORYID
+import com.ix.ibrahim7.facebookintegration.util.Constant.TAG
 import com.ix.ibrahim7.facebookintegration.util.Constant.USERLIST
 import com.ix.ibrahim7.facebookintegration.util.Constant.editor
 import com.ix.ibrahim7.facebookintegration.util.Constant.getSharePref
@@ -68,7 +70,7 @@ class ListUsersFragment : Fragment(), UserAdapter.onClick, AddEmailDialog.OnClic
         if (!getSharePref(requireContext()).getBoolean(USERLIST,false)) {
             Constant.enableTips(
                 requireActivity(),
-                "Here You can add a list of e-mails for this category",
+                requireActivity().getString(R.string.list_user),
                 mBinding.view,
                 Gravity.TOP,
                 3500,
@@ -101,8 +103,7 @@ class ListUsersFragment : Fragment(), UserAdapter.onClick, AddEmailDialog.OnClic
     }
 
     override fun onClick(users: Users, type: Boolean) {
-        Log.v("eee insert", users.id.toString())
-        Log.v("eee insert", users.categoryID.toString())
+        Log.v("$TAG insert User", users.categoryID)
         viewModel.insertUser(users)
         user_adapter.notifyDataSetChanged()
     }

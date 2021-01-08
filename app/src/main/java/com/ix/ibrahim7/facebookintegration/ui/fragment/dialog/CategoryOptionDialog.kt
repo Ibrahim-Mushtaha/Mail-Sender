@@ -20,7 +20,7 @@ class CategoryOptionDialog(val onGo: OnClickListener, val category: Category) : 
         ViewModelProvider(this)[CategoryViewmodel::class.java]
     }
 
-    var color = ""
+    private var color = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
