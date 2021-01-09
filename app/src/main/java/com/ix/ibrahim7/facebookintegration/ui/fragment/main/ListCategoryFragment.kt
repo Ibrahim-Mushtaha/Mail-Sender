@@ -71,6 +71,7 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
         }
 
         viewModel.CategoryLiveData!!.observe(viewLifecycleOwner, Observer { category ->
+            if (category.isEmpty()) mBinding.emptyContanier.visibility = View.VISIBLE else mBinding.emptyContanier.visibility = View.INVISIBLE
             category_adapter.data.clear()
             category_adapter.data.addAll(category)
             category_adapter.notifyDataSetChanged()
@@ -101,7 +102,9 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
 
     override fun onClick(category: Category, type: Int) {
         when (type) {
-            1 -> viewModel.insertCategory(category)
+            1 -> {
+                viewModel.insertCategory(category)
+            }
             else -> viewModel.updateCategory(category)
         }
     }

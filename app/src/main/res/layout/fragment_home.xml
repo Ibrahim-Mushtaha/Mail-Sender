@@ -103,6 +103,19 @@
          </androidx.constraintlayout.widget.ConstraintLayout>
       </androidx.cardview.widget.CardView>
 
+      <TextView
+          android:id="@+id/textView6"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16sp"
+          android:layout_marginTop="12dp"
+          android:fontFamily="@font/cairo_semibold"
+          android:text="E-mails of the last 30 days"
+          android:textColor="@android:color/white"
+          android:textSize="18dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/list_Email"
           android:layout_width="match_parent"
@@ -111,7 +124,7 @@
           android:layout_marginTop="4dp"
           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/cardView"
+          app:layout_constraintTop_toBottomOf="@+id/textView6"
           tools:listitem="@layout/item_email" />
 
       <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,7 +143,7 @@
              android:fontFamily="@font/cairo_regular"
              android:text="No Email Send Until know"
              android:textColor="@color/hint_text"
-             android:textSize="14sp"
+             android:textSize="16sp"
              app:layout_constraintBottom_toBottomOf="parent"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintHorizontal_bias="0.5"
@@ -139,8 +152,8 @@
 
          <ImageView
              android:id="@+id/imageView"
-             android:layout_width="42dp"
-             android:layout_height="42dp"
+             android:layout_width="62dp"
+             android:layout_height="62dp"
              android:src="@drawable/ic_files"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintHorizontal_bias="0.498"

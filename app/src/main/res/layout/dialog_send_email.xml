@@ -153,7 +153,7 @@
             android:layout_marginEnd="24sp"
             android:backgroundTint="@color/secondery_background_color"
             android:fontFamily="@font/cairo_semibold"
-            android:text="Save"
+            android:text="Send"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18dp"
