@@ -12,4 +12,5 @@
     <string name="list_user">Here You can add a list of e-mails for this category</string>
     <string name="sended_successfully">Sanded Successfully</string>
     <string name="failed">Failed please try again later</string>
+    <string name="version">Version</string>
 </resources>

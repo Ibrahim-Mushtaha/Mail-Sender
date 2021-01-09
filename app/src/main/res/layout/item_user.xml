@@ -6,7 +6,7 @@
     <data>
         <variable
             name="User"
-            type="com.ix.ibrahim7.facebookintegration.model.Users" />
+            type="com.ix.ibrahim7.mailsender.model.Users" />
 
     </data>
 
@@ -17,7 +17,8 @@
         android:backgroundTint="@color/secondery_background_color"
         android:elevation="2dp"
         android:layout_margin="4dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        style="@style/focusInClick">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

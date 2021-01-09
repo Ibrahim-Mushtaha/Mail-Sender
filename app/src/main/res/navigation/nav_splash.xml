@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.splash.SplashFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.splash.SplashFragment"
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.auth.LoginFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -48,6 +48,6 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment2"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.MainFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.MainFragment"
         android:label="MainFragment" />
 </navigation>

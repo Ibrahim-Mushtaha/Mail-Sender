@@ -6,11 +6,11 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.HomeFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.main.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/listCategoryFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.ListCategoryFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.main.ListCategoryFragment"
         android:label="fragment_list_email">
         <action
             android:id="@+id/action_listEmailFragment_to_listUsersFragment"
@@ -22,12 +22,12 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.SettingsFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.main.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/listUsersFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.main.ListUsersFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.main.ListUsersFragment"
         android:label="fragment_list_users"
         tools:layout="@layout/fragment_list_users" />
 </navigation>

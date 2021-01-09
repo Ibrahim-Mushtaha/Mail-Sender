@@ -65,6 +65,8 @@
                 android:textCursorDrawable="@drawable/shape_curser"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
+                android:lines="1"
+                android:inputType="text"
                 android:singleLine="true"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -94,6 +96,7 @@
                 android:textColorHint="@color/box_color"
                 android:textCursorDrawable="@drawable/shape_curser"
                 android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/white" />

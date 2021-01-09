@@ -55,6 +55,7 @@
                 android:layout_below="@id/txtWelcome"
                 android:fontFamily="@font/cairo_regular"
                 android:text="Manage your Facebook post and account simple . Login and watch your own stats"
+                android:lineSpacingMultiplier="0.7"
                 android:textColor="@color/hint_text"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="45dp"
@@ -136,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="365dp" />
+            app:layout_constraintGuide_begin="379dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

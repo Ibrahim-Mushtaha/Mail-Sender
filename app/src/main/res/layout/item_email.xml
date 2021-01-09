@@ -6,7 +6,7 @@
     <data>
         <variable
             name="Email"
-            type="com.ix.ibrahim7.facebookintegration.model.Message" />
+            type="com.ix.ibrahim7.mailsender.model.Message" />
 
     </data>
 

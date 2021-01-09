@@ -6,6 +6,6 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.ix.ibrahim7.facebookintegration.ui.fragment.MainFragment"
+        android:name="com.ix.ibrahim7.mailsender.ui.fragment.MainFragment"
         android:label="MainFragment" />
 </navigation>
