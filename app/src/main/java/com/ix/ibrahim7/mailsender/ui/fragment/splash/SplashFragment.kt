@@ -16,8 +16,7 @@ import com.ix.ibrahim7.mailsender.R
 import com.ix.ibrahim7.mailsender.databinding.FragmentSplashBinding
 import com.ix.ibrahim7.mailsender.ui.viewmodel.SplashState
 import com.ix.ibrahim7.mailsender.ui.viewmodel.SplashViewModel
-import com.ix.ibrahim7.mailsender.util.Constant.LOGIN
-import com.ix.ibrahim7.mailsender.util.Constant.getSharePref
+import com.ix.ibrahim7.mailsender.other.*
 
 
 class SplashFragment : Fragment() {

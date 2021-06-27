@@ -26,6 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -106,5 +107,8 @@ dependencies {
 
 
     implementation "dev.sasikanth:colorsheet:1.0.1"
+
+    //loading progress
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.1'
 
 }

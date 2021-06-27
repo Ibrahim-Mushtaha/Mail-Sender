@@ -19,11 +19,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.ix.ibrahim7.mailsender.R
 import com.ix.ibrahim7.mailsender.databinding.FragmentLoginBinding
-import com.ix.ibrahim7.mailsender.util.Constant.EMAIL
-import com.ix.ibrahim7.mailsender.util.Constant.LOGIN
-import com.ix.ibrahim7.mailsender.util.Constant.TAG
-import com.ix.ibrahim7.mailsender.util.Constant.USERID
-import com.ix.ibrahim7.mailsender.util.Constant.editor
+import com.ix.ibrahim7.mailsender.other.*
 
 
 class LoginFragment : Fragment() {

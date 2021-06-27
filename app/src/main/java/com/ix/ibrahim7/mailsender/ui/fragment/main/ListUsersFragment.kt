@@ -20,13 +20,7 @@ import com.ix.ibrahim7.mailsender.model.Users
 import com.ix.ibrahim7.mailsender.ui.fragment.dialog.AddEmailDialog
 import com.ix.ibrahim7.mailsender.ui.fragment.dialog.OptionDialog
 import com.ix.ibrahim7.mailsender.ui.viewmodel.UsersViewmodel
-import com.ix.ibrahim7.mailsender.util.Constant
-import com.ix.ibrahim7.mailsender.util.Constant.CATEGORYID
-import com.ix.ibrahim7.mailsender.util.Constant.DURATION
-import com.ix.ibrahim7.mailsender.util.Constant.TAG
-import com.ix.ibrahim7.mailsender.util.Constant.USERLIST
-import com.ix.ibrahim7.mailsender.util.Constant.editor
-import com.ix.ibrahim7.mailsender.util.Constant.getSharePref
+import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlin.collections.ArrayList
 
@@ -73,7 +67,7 @@ class ListUsersFragment : Fragment(), UserAdapter.onClick, AddEmailDialog.OnClic
         })
 
         if (!getSharePref(requireContext()).getBoolean(USERLIST,false)) {
-            Constant.enableTips(
+           enableTips(
                 requireActivity(),
                 requireActivity().getString(R.string.list_user),
                 mBinding.view,

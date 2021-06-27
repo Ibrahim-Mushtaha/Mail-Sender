@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.facebook.FacebookSdk
 import com.ix.ibrahim7.mailsender.R
 import com.ix.ibrahim7.mailsender.databinding.ActivityMainBinding
-import com.ix.ibrahim7.mailsender.util.Constant.setUpStatusBar
+import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 import java.security.MessageDigest

@@ -21,16 +21,10 @@ import com.ix.ibrahim7.mailsender.R
 import com.ix.ibrahim7.mailsender.adapter.EmailAdapter
 import com.ix.ibrahim7.mailsender.databinding.FragmentHomeBinding
 import com.ix.ibrahim7.mailsender.model.Message
+import com.ix.ibrahim7.mailsender.other.getSnackBar
 import com.ix.ibrahim7.mailsender.ui.fragment.dialog.SendEmailDialog
 import com.ix.ibrahim7.mailsender.ui.viewmodel.HomeViewmodel
-import com.ix.ibrahim7.mailsender.util.Constant
-import com.ix.ibrahim7.mailsender.util.Constant.DURATION
-import com.ix.ibrahim7.mailsender.util.Constant.HOME
-import com.ix.ibrahim7.mailsender.util.Constant.dialog
-import com.ix.ibrahim7.mailsender.util.Constant.editor
-import com.ix.ibrahim7.mailsender.util.Constant.enableTips
-import com.ix.ibrahim7.mailsender.util.Constant.getSharePref
-import com.ix.ibrahim7.mailsender.util.Constant.setImage
+import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -144,16 +138,15 @@ class HomeFragment : Fragment(), EmailAdapter.onClick, SendEmailDialog.OnClickLi
 
     override fun onClick(message: Message?,type: Int) {
         when (type) {
-            0 -> Constant.showDialog(requireActivity())
+            0 -> showDialog(requireActivity())
             1 -> {
                 viewModel.insertMessage(message!!)
                 Snackbar.make(mbinding.root, requireActivity().getString(R.string.sended_successfully), Snackbar.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
             2 -> {
-                Snackbar.make(mbinding.root, requireActivity().getString(R.string.failed), Snackbar.LENGTH_SHORT)
-                    .show()
                 dialog.dismiss()
+                requireActivity().getSnackBar(R.layout.item_custom_snackbar,mbinding.root,"Please allow Less secure app access from your email setting")
             }
         }
     }

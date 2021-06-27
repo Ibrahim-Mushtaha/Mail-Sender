@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ix.ibrahim7.mailsender.R
 import com.ix.ibrahim7.mailsender.databinding.ItemEmailBinding
 import com.ix.ibrahim7.mailsender.model.Message
-import com.ix.ibrahim7.mailsender.util.Constant.DAYFORMAT
+import com.ix.ibrahim7.mailsender.other.DAYFORMAT
 import kotlinx.android.synthetic.main.item_email.view.*
 import java.text.SimpleDateFormat
 import java.util.*

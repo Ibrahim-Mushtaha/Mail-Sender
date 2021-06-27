@@ -18,18 +18,21 @@ import com.ix.ibrahim7.mailsender.adapter.CategoryDialogAdapter
 import com.ix.ibrahim7.mailsender.databinding.DialogSendEmailBinding
 import com.ix.ibrahim7.mailsender.model.Category
 import com.ix.ibrahim7.mailsender.model.Message
+import com.ix.ibrahim7.mailsender.other.getSnackBar
 import com.ix.ibrahim7.mailsender.ui.viewmodel.CategoryViewmodel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),CategoryDialogAdapter.onClick{
 
-    lateinit var mBinding:DialogSendEmailBinding
+class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),
+    CategoryDialogAdapter.onClick {
+
+    lateinit var mBinding: DialogSendEmailBinding
 
     lateinit var shareDialog: ShareDialog
 
     private val category_adapter by lazy {
-        CategoryDialogAdapter(ArrayList(),this)
+        CategoryDialogAdapter(ArrayList(), this)
     }
 
     private val viewModel by lazy {
@@ -41,7 +44,7 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = DialogSendEmailBinding.inflate(inflater,container,false).apply {
+        mBinding = DialogSendEmailBinding.inflate(inflater, container, false).apply {
             executePendingBindings()
         }
         dialog!!.requestWindowFeature(STYLE_NO_TITLE)
@@ -80,39 +83,41 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
                     return@setOnClickListener
                 }
                 else -> {
-                    onGo.onClick(null,0)
+                    onGo.onClick(null, 0)
                     GMailSender.withAccount(getData().email, "Ibrahim6070$")
-            .withTitle(requireActivity().getString(R.string.app_name))
-            .withBody(mBinding.txtEmailNote.text.toString())
-            .withSender(getData().email)
-            .toEmailAddress(mBinding.txtEmailTo.text.toString()) // one or multiple addresses separated by a comma
-            .withListenner(object : GmailListener {
-                override fun sendSuccess() {
-                    onGo.onClick(Message(UUID.randomUUID().toString(),mBinding.txtEmailTo.text.toString(),mBinding.txtEmailNote.text.toString(),Calendar.getInstance().timeInMillis.toString()),1)
-                }
+                        .withTitle(requireActivity().getString(R.string.app_name))
+                        .withBody(mBinding.txtEmailNote.text.toString())
+                        .withSender(getData().email)
+                        .toEmailAddress(mBinding.txtEmailTo.text.toString()) // one or multiple addresses separated by a comma
+                        .withListenner(object : GmailListener {
+                            override fun sendSuccess() {
+                                onGo.onClick(
+                                    Message(
+                                        UUID.randomUUID().toString(),
+                                        mBinding.txtEmailTo.text.toString(),
+                                        mBinding.txtEmailNote.text.toString(),
+                                        Calendar.getInstance().timeInMillis.toString()
+                                    ), 1
+                                )
+                            }
 
-                override fun sendFail(err: String) {
-                    onGo.onClick(null,2)
-                }
-            })
-            .send()
-
-                    /*shareDialog = ShareDialog(requireActivity())
-                    val content =
-                        ShareLinkContent.Builder()
-                            .setContentUrl(Uri.parse("shareContentUrl"))
-                            .build()
-                    shareDialog.show(content)*/
+                            override fun sendFail(err: String) {
+                                onGo.onClick(null, 2)
+                            }
+                        })
+                        .send()
                     dismiss()
                 }
             }
         }
 
-        viewModel.CategoryLiveData!!.observe(viewLifecycleOwner, androidx.lifecycle.Observer { category ->
-            category_adapter.data.clear()
-            category_adapter.data.addAll(category)
-            category_adapter.notifyDataSetChanged()
-        })
+        viewModel.CategoryLiveData!!.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { category ->
+                category_adapter.data.clear()
+                category_adapter.data.addAll(category)
+                category_adapter.notifyDataSetChanged()
+            })
 
 
     }
@@ -127,17 +132,18 @@ class SendEmailDialog(val onGo: OnClickListener) : BottomSheetDialogFragment(),C
     }
 
 
-    fun getData():GoogleSignInAccount{
+    fun getData(): GoogleSignInAccount {
         return GoogleSignIn.getLastSignedInAccount(activity)!!
     }
 
     interface OnClickListener {
-        fun onClick(message: Message?,type: Int)
+        fun onClick(message: Message?, type: Int)
     }
 
     override fun onClickItem(category: Category, position: Int, type: Int) {
 
     }
+
 
 
 }

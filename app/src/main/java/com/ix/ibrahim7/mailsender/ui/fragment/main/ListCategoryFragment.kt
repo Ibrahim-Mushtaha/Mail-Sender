@@ -20,12 +20,7 @@ import com.ix.ibrahim7.mailsender.model.Users
 import com.ix.ibrahim7.mailsender.ui.fragment.dialog.OptionDialog
 import com.ix.ibrahim7.mailsender.ui.fragment.dialog.ChooseColorDialog
 import com.ix.ibrahim7.mailsender.ui.viewmodel.CategoryViewmodel
-import com.ix.ibrahim7.mailsender.util.Constant
-import com.ix.ibrahim7.mailsender.util.Constant.CATEGORY
-import com.ix.ibrahim7.mailsender.util.Constant.CATEGORYID
-import com.ix.ibrahim7.mailsender.util.Constant.DURATION
-import com.ix.ibrahim7.mailsender.util.Constant.editor
-import com.ix.ibrahim7.mailsender.util.Constant.getSharePref
+import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -58,7 +53,7 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
 
 
         if (!getSharePref(requireContext()).getBoolean(CATEGORY,false)) {
-            Constant.enableTips(
+           enableTips(
                 requireActivity(),
                 requireActivity().getString(R.string.category_tips),
                 mBinding.view,

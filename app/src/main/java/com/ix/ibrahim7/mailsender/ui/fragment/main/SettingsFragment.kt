@@ -17,10 +17,7 @@ import com.ix.ibrahim7.mailsender.R
 import com.ix.ibrahim7.mailsender.databinding.FragmentSettingsBinding
 import com.ix.ibrahim7.mailsender.model.Message
 import com.ix.ibrahim7.mailsender.ui.fragment.dialog.SendEmailDialog
-import com.ix.ibrahim7.mailsender.util.Constant.CATEGORY
-import com.ix.ibrahim7.mailsender.util.Constant.HOME
-import com.ix.ibrahim7.mailsender.util.Constant.USERLIST
-import com.ix.ibrahim7.mailsender.util.Constant.editor
+import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.io.*
 

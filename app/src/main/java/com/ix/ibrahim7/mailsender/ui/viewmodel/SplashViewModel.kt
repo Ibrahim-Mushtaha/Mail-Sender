@@ -2,7 +2,7 @@ package com.ix.ibrahim7.mailsender.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.ix.ibrahim7.mailsender.util.Constant.DURATION
+import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
