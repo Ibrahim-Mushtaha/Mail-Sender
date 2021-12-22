@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mbinding: ActivityMainBinding
 
+    private val FACEBOOK_KEY = "com.ix.ibrahim7.facebookintegration"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FacebookSdk.sdkInitialize(this)
@@ -40,14 +42,10 @@ class MainActivity : AppCompatActivity() {
      */
     private fun printkeyHash(){
         try {
-            val info = packageManager.getPackageInfo("com.ix.ibrahim7.facebookintegration", PackageManager.GET_SIGNATURES)
+            val info = packageManager.getPackageInfo(FACEBOOK_KEY, PackageManager.GET_SIGNATURES)
             for (Signature in info.signatures) {
                 val md = MessageDigest.getInstance("SHA")
                 md.update(Signature.toByteArray())
-                Log.v(
-                    "eee key ",
-                    android.util.Base64.encodeToString(md.digest(), android.util.Base64.DEFAULT)
-                )
             }
         }catch (e:Exception){
             Log.v(

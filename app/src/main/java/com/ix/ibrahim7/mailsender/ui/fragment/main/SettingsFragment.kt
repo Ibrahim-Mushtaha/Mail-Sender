@@ -56,28 +56,16 @@ class SettingsFragment : Fragment(), SendEmailDialog.OnClickListener {
                     putBoolean(CATEGORY, false)
                     apply()
                 }
-                Snackbar.make(mBinding.root, requireActivity().getString(R.string.activate_tips), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    mBinding.root,
+                    requireActivity().getString(R.string.activate_tips),
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
 
 
             btnRate.setOnClickListener {
-                val uri: Uri = Uri.parse("market://details?id=${requireActivity().packageName}")
-                val goToMarket = Intent(Intent.ACTION_VIEW, uri)
-                goToMarket.addFlags(
-                    Intent.FLAG_ACTIVITY_NO_HISTORY or
-                            Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
-                            Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                )
-                try {
-                    startActivity(goToMarket)
-                } catch (e: ActivityNotFoundException) {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("http://play.google.com/store/apps/details?id=${requireActivity().packageName}")
-                        )
-                    )
-                }
+                rating()
             }
 
 
@@ -96,6 +84,15 @@ class SettingsFragment : Fragment(), SendEmailDialog.OnClickListener {
 
     override fun onClick(message: Message?, type: Int) {
 
+    }
+
+    fun rating() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://play.google.com/store/apps/details?id=${requireActivity().packageName}")
+            )
+        )
     }
 
 
@@ -120,50 +117,45 @@ class SettingsFragment : Fragment(), SendEmailDialog.OnClickListener {
         val app: ApplicationInfo = requireActivity().application.applicationInfo
         val filePath = app.sourceDir
         val intent = Intent(Intent.ACTION_SEND)
-
         intent.type = "*/*"
-
         val originalApk = File(filePath)
         try {
-            //Make new directory in new location=
             var tempFile =
                 File(requireActivity().externalCacheDir.toString() + "/ExtractedApk")
-            //If directory doesn't exists create new
             if (!tempFile.isDirectory) if (!tempFile.mkdirs()) return
-            //Get application's name and convert to lowercase
             tempFile = File(
                 tempFile.path + "/" + getString(app.labelRes).replace(" ", "")
                     .toLowerCase() + ".apk"
             )
-            //If file doesn't exists create new
             if (!tempFile.exists()) {
                 if (!tempFile.createNewFile()) {
                     return
                 }
             }
-            //Copy file to new location
-            val `in`: InputStream = FileInputStream(originalApk)
-            val out: OutputStream = FileOutputStream(tempFile)
-            val buf = ByteArray(1024)
-            var len: Int
-            while (`in`.read(buf).also { len = it } > 0) {
-                out.write(buf, 0, len)
-            }
-            `in`.close()
-            out.close()
-            println("File copied.")
-//          intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(tempFile));
-            val photoURI = FileProvider.getUriForFile(
-                requireContext(),
-                BuildConfig.APPLICATION_ID.toString() + ".provider",
-                tempFile
-            )
-            //  intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(tempFile));
-            intent.putExtra(Intent.EXTRA_STREAM, photoURI)
+
+            intent.putExtra(Intent.EXTRA_STREAM, getURL(originalApk, tempFile))
             startActivity(Intent.createChooser(intent, "Share app via"))
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    private fun getURL(originalApk: File, tempFile: File): Uri {
+        val `in`: InputStream = FileInputStream(originalApk)
+        val out: OutputStream = FileOutputStream(tempFile)
+        val buf = ByteArray(1024)
+        var len: Int
+        while (`in`.read(buf).also { len = it } > 0) {
+            out.write(buf, 0, len)
+        }
+        `in`.close()
+        out.close()
+        println("File copied.")
+        return FileProvider.getUriForFile(
+            requireContext(),
+            BuildConfig.APPLICATION_ID.toString() + ".provider",
+            tempFile
+        )
     }
 
 }

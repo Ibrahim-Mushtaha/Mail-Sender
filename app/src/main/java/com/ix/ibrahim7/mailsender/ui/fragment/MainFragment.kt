@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentMainBinding.inflate(inflater, container, false).apply {
             executePendingBindings()
         }
@@ -34,7 +34,7 @@ class MainFragment : Fragment() {
 
         mBinding.bottomNav.itemIconTintList = null
 
-        val navegation =
+
             childFragmentManager.findFragmentById(R.id.fragment_nav_host_main)
                 ?.findNavController()?.also {
                     NavigationUI.setupWithNavController(

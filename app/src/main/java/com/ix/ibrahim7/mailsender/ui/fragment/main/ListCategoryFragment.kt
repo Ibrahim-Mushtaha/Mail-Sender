@@ -22,15 +22,21 @@ import com.ix.ibrahim7.mailsender.ui.fragment.dialog.ChooseColorDialog
 import com.ix.ibrahim7.mailsender.ui.viewmodel.CategoryViewmodel
 import com.ix.ibrahim7.mailsender.other.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import java.util.ArrayList
 
 
-class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDialog.OnClickListener ,OptionDialog.OnClickListener{
+class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDialog.OnClickListener,
+    OptionDialog.OnClickListener {
 
     lateinit var mBinding: FragmentListCategoryBinding
 
+    companion object {
+        val data = ArrayList<Category>()
+    }
+
 
     private val category_adapter by lazy {
-        CategoryAdapter(ArrayList(), this)
+        CategoryAdapter(data, this)
     }
 
     private val viewModel by lazy {
@@ -41,7 +47,7 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireActivity().bottom_nav.visibility=View.VISIBLE
+        requireActivity().bottom_nav.visibility = View.VISIBLE
         mBinding = FragmentListCategoryBinding.inflate(inflater, container, false).apply {
             executePendingBindings()
         }
@@ -52,8 +58,8 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
-        if (!getSharePref(requireContext()).getBoolean(CATEGORY,false)) {
-           enableTips(
+        if (!getSharePref(requireContext()).getBoolean(CATEGORY, false)) {
+            enableTips(
                 requireActivity(),
                 requireActivity().getString(R.string.category_tips),
                 mBinding.view,
@@ -61,16 +67,20 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
                 DURATION.toLong(),
                 Color.parseColor("#bdc3c7")
             )
-            editor(requireContext()).putBoolean(CATEGORY,true).apply()
+            editor(requireContext()).putBoolean(CATEGORY, true).apply()
         }
 
         mBinding.listCategory.apply {
             adapter = category_adapter
-            layoutAnimation = AnimationUtils.loadLayoutAnimation(requireContext(),R.anim.recyclerview_layout_animation)
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(
+                requireContext(),
+                R.anim.recyclerview_layout_animation
+            )
         }
 
         viewModel.CategoryLiveData!!.observe(viewLifecycleOwner, Observer { category ->
-            if (category.isEmpty()) mBinding.emptyContanier.visibility = View.VISIBLE else mBinding.emptyContanier.visibility = View.INVISIBLE
+            if (category.isEmpty()) mBinding.emptyContanier.visibility =
+                View.VISIBLE else mBinding.emptyContanier.visibility = View.INVISIBLE
             category_adapter.data.clear()
             category_adapter.data.addAll(category)
             category_adapter.notifyDataSetChanged()
@@ -86,15 +96,18 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
     }
 
     override fun onClickItem(category: Category, position: Int, type: Int) {
-        when(type){
-            1->{
+        when (type) {
+            1 -> {
                 val bundle = Bundle().apply {
-                    putString(CATEGORYID,category.id)
+                    putString(CATEGORYID, category.id)
                 }
-                findNavController().navigate(R.id.action_listEmailFragment_to_listUsersFragment,bundle)
+                findNavController().navigate(
+                    R.id.action_listEmailFragment_to_listUsersFragment,
+                    bundle
+                )
             }
-            2->{
-                OptionDialog(this,category,null,1).show(childFragmentManager,"")
+            2 -> {
+                OptionDialog(this, category, null, 1).show(childFragmentManager, "")
             }
         }
     }
@@ -108,7 +121,7 @@ class ListCategoryFragment : Fragment(), CategoryAdapter.onClick, ChooseColorDia
         }
     }
 
-    override fun onClick(category: Category?,users: Users?) {
+    override fun onClick(category: Category?, users: Users?) {
         ChooseColorDialog(this, category).show(childFragmentManager, "")
     }
 

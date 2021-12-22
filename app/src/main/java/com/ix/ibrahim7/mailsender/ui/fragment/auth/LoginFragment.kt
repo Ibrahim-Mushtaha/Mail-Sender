@@ -28,7 +28,7 @@ class LoginFragment : Fragment() {
     lateinit var callbackManager: CallbackManager
     private val RC_SIGN_IN = 100
 
-    lateinit var mGoogleSignInClient :GoogleSignInClient
+    lateinit var mGoogleSignInClient: GoogleSignInClient
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,15 +62,14 @@ class LoginFragment : Fragment() {
             }
 
 
-
             // facebook Callback registration
             loginButton.registerCallback(callbackManager, object :
                 FacebookCallback<LoginResult?> {
                 override fun onSuccess(loginResult: LoginResult?) {
                     editor(requireContext()).apply {
-                        putString(USERID,AccessToken.getCurrentAccessToken()!!.userId)
+                        putString(USERID, AccessToken.getCurrentAccessToken()!!.userId)
                         putBoolean(LOGIN, true)
-                            apply()
+                        apply()
                     }
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment2)
                     Log.e("$TAG success", AccessToken.getCurrentAccessToken()!!.toString())
@@ -82,7 +81,7 @@ class LoginFragment : Fragment() {
 
                 override fun onError(exception: FacebookException) {
                     Log.e("$TAG error", exception.message.toString())
-                    editor(requireContext()).putBoolean(LOGIN,false).apply()
+                    editor(requireContext()).putBoolean(LOGIN, false).apply()
                 }
 
             })
@@ -98,17 +97,12 @@ class LoginFragment : Fragment() {
     }
 
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode === RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            val task: Task<GoogleSignInAccount> =
-                GoogleSignIn.getSignedInAccountFromIntent(data!!)
-            handleSignInResult(task)
-        }
-
+        val task: Task<GoogleSignInAccount> =
+            GoogleSignIn.getSignedInAccountFromIntent(data!!)
+        handleSignInResult(task)
         super.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -124,9 +118,10 @@ class LoginFragment : Fragment() {
                 apply()
             }
             findNavController().navigate(R.id.action_loginFragment_to_mainFragment2)
-            Log.v(TAG+"name", account!!.displayName.toString())
+            Log.v(TAG + "name", account!!.displayName.toString())
         } catch (e: ApiException) {
             Log.w(TAG, "signInResult:failed code=" + e.statusCode)
+            e.printStackTrace()
         }
     }
 
