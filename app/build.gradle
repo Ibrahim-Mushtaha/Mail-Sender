@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
+
 }
 
 android {
@@ -51,9 +53,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
     implementation ('com.github.worker8:tourguide:2.0.0-SNAPSHOT@aar') {
         transitive=true
     }
@@ -95,6 +96,7 @@ dependencies {
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Bottom Navigation
@@ -110,5 +112,16 @@ dependencies {
 
     //loading progress
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.1'
+
+    debugImplementation 'androidx.test:core:1.4.0'
+    // Optional -- Mockito framework
+    testImplementation 'org.mockito:mockito-core:3.10.0'
+    //
+    testImplementation 'androidx.test:runner:1.4.0'
+    testImplementation 'org.mockito:mockito-inline:3.10.0'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }
